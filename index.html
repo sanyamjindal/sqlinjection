@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-box">
+        <h2>Login</h2>
+        <form action="login.php" method="POST" id="loginForm">
+            <div class="textbox">
+                <input type="text" name="username" placeholder="Username">
+            </div>
+            <div class="textbox">
+                <input type="password" name="password" placeholder="Password">
+            </div>
+            <input type="submit" name="login" value="Login">
+        </form>
+        <br>
+        <button id="toggleButton" onclick="toggleFile()">Toggle PHP File</button>
+        <p id="fileStatus">Currently using: login.php (Safe)</p>
+    </div>
+
+    <script>
+        var isSafeFile = true;
+
+        function toggleFile() {
+            isSafeFile = !isSafeFile;
+            var filename = isSafeFile ? 'login.php' : 'unsafe_login.php';
+
+            // Update the form action
+            document.getElementById('loginForm').action = filename;
+
+            // Update the status message
+            var fileStatus = document.getElementById('fileStatus');
+            fileStatus.innerHTML = 'Currently using: ' + filename + (isSafeFile ? ' (Safe)' : ' (Unsafe)');
+
+            return false; // Prevent form submission
+        }
+    </script>
+</body>
+</html>
